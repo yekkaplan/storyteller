@@ -6,8 +6,8 @@ class SplashController extends GetxController {
   void onInit() {
     super.onInit();
 
-    Future.delayed(Duration(seconds: 3), () {
-      Get.to(() => HomeView());
+    Future.delayed(const Duration(seconds: 2), () {
+      Get.to(() => const HomeView());
     });
   }
 }
