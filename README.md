@@ -14,7 +14,6 @@ flutter run
 [MIT](https://choosealicense.com/licenses/mit/)
 
   
-![Logo](https://static.ticimax.cloud/41072/customcss/images/logo.png)
 
     
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
