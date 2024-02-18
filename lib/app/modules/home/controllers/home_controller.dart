@@ -1,10 +1,26 @@
 import 'package:get/get.dart';
+import 'package:getx_skeleton/app/data/models/book_mock_model.dart';
 
 import '../../../../utils/constants.dart';
 import '../../../services/api_call_status.dart';
 import '../../../services/base_client.dart';
 
 class HomeController extends GetxController {
+  final List<BookMockModel> mockList = [
+    BookMockModel("Arzın Merkezine Yolculuk", "1", "assets/images/assettwo.jpg",
+        'Semiha Okan'),
+    BookMockModel("80 günde devri alem", "2", "assets/images/assetthre.jpg",
+        'Semiha Okan'),
+    BookMockModel(
+        "Dertten müzdarip", "3", "assets/images/assetone.jpg", 'Semiha Okan'),
+  ];
+
+  RxInt currentIndex = 0.obs;
+
+  void updateCurrentIndex(int index) {
+    currentIndex.value = index;
+  }
+
   // hold data coming from api
   List<dynamic>? data;
   // api call status
@@ -21,7 +37,8 @@ class HomeController extends GetxController {
         apiCallStatus = ApiCallStatus.loading;
         update();
       },
-      onSuccess: (response){ // api done successfully
+      onSuccess: (response) {
+        // api done successfully
         data = List.from(response.data);
         // *) indicate success state
         apiCallStatus = ApiCallStatus.success;
@@ -29,7 +46,7 @@ class HomeController extends GetxController {
       },
       // if you don't pass this method base client
       // will automaticly handle error and show message to user
-      onError: (error){
+      onError: (error) {
         // show error message to user
         BaseClient.handleApiError(error);
         // *) indicate error status
