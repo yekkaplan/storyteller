@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:getx_skeleton/app/modules/home/views/home_view.dart';
+import 'package:getx_skeleton/app/routes/app_pages.dart';
 
 class SplashController extends GetxController {
   @override
@@ -7,7 +8,7 @@ class SplashController extends GetxController {
     super.onInit();
 
     Future.delayed(const Duration(seconds: 2), () {
-      Get.to(() => const HomeView());
+      Get.toNamed(Routes.HOME);
     });
   }
 }

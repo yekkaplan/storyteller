@@ -15,6 +15,8 @@ class HomeController extends GetxController {
         "Dertten müzdarip", "3", "assets/images/assetone.jpg", 'Semiha Okan'),
   ];
 
+  String title = "TEST";
+
   RxInt currentIndex = 0.obs;
 
   void updateCurrentIndex(int index) {
