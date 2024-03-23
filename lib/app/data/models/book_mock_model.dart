@@ -3,6 +3,8 @@ class BookMockModel {
   String bookId;
   String asset;
   String author;
+  String summary;
 
-  BookMockModel(this.bookName, this.bookId, this.asset, this.author);
+  BookMockModel(
+      this.bookName, this.bookId, this.asset, this.author, this.summary);
 }

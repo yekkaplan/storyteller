@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:getx_skeleton/app/data/models/book_mock_model.dart';
 
-class HomeController extends GetxController {
+class ReadController extends GetxController {
   final List<BookMockModel> mockBookList = [
     BookMockModel(
         "Arzın Merkezine Yolculuk",
