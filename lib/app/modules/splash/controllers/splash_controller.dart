@@ -7,7 +7,7 @@ class SplashController extends GetxController {
   void onInit() {
     super.onInit();
 
-    Future.delayed(const Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 6), () {
       Get.toNamed(Routes.HOME);
     });
   }

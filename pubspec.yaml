@@ -33,6 +33,9 @@ dependencies:
 
   flutter:
     sdk: flutter
+  flutter_rating_bar: ^4.0.1
+  animate_do: ^2.0.0
+
 
 dev_dependencies:
   mockito:

@@ -6,7 +6,7 @@ class LightThemeColors {
   static const Color primaryColor = Color(0xFFEFA833);
 
   // SECONDARY COLOR
-  static const Color accentColor = Color(0xFF2A5357);
+  static const Color accentColor = Color.fromARGB(255, 42, 83, 87);
   static const Color tertiaryColor = Color(0xFF683735);
 
   //APPBAR

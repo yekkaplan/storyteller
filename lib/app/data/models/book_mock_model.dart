@@ -1,10 +1,19 @@
 class BookMockModel {
-  String bookName;
-  String bookId;
-  String asset;
-  String author;
-  String summary;
+  final String bookName;
+  final String id;
+  final String asset;
+  final String author;
+  final String summary;
+  final String readCount;
+  final double rating;
 
-  BookMockModel(
-      this.bookName, this.bookId, this.asset, this.author, this.summary);
+  BookMockModel({
+    required this.bookName,
+    required this.id,
+    required this.asset,
+    required this.author,
+    required this.summary,
+    required this.readCount,
+    required this.rating,
+  });
 }

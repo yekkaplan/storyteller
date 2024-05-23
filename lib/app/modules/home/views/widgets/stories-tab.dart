@@ -11,11 +11,13 @@ class StoriesTab extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
+    var size = MediaQuery.of(context).size;
+    var height = size.height;
+
     return Container(
       child: Stack(
         children: [
           Obx(() => Container(
-                padding: EdgeInsets.all(8),
                 child: Card(
                   elevation: 8,
                   child: Column(
@@ -25,14 +27,18 @@ class StoriesTab extends GetView<HomeController> {
                         onTap: () {
                           Get.toNamed(Routes.READ);
                         },
-                        child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: 250,
-                          child: Image.asset(
-                            controller
-                                .mockBookList[controller.currentIndex.value]
-                                .asset,
-                            fit: BoxFit.fitWidth,
+                        child: Hero(
+                          tag: 'Test!',
+                          child: Container(
+                            width: size.width,
+                            height: height *
+                                0.2, // Resim yüksekliği ekran yüksekliğinin %20'si
+                            child: Image.asset(
+                              controller
+                                  .mockBookList[controller.currentIndex.value]
+                                  .asset,
+                              fit: BoxFit.fitWidth,
+                            ),
                           ),
                         ),
                       ),
@@ -66,45 +72,28 @@ class StoriesTab extends GetView<HomeController> {
                       Spacer(),
                       Container(
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
-                              child: TextButton(
-                                onPressed: () => {},
-                                child: Container(
-                                  child: Row(
-                                    children: [
-                                      Icon(
-                                        Icons.menu_book_outlined,
-                                        color: theme.colorScheme.secondary,
-                                      ),
-                                      SizedBox(width: 8),
-                                      Text(
-                                        "Hemen Oku",
-                                        style: theme.textTheme.bodyLarge,
-                                      ),
-                                    ],
-                                  ),
-                                ),
+                            TextButton.icon(
+                              onPressed: () => {},
+                              icon: Icon(
+                                Icons.menu_book_outlined,
+                                color: theme.colorScheme.secondary,
+                              ),
+                              label: Text(
+                                "Hemen Oku",
+                                style: theme.textTheme.bodyLarge,
                               ),
                             ),
-                            Container(
-                              child: TextButton(
-                                onPressed: () => {},
-                                child: Container(
-                                  child: Row(
-                                    children: [
-                                      Icon(
-                                        Icons.spatial_audio_rounded,
-                                        color: theme.colorScheme.secondary,
-                                      ),
-                                      SizedBox(width: 8),
-                                      Text(
-                                        "Dinle",
-                                        style: theme.textTheme.bodyLarge,
-                                      ),
-                                    ],
-                                  ),
-                                ),
+                            TextButton.icon(
+                              onPressed: () => {},
+                              icon: Icon(
+                                Icons.spatial_audio_rounded,
+                                color: theme.colorScheme.secondary,
+                              ),
+                              label: Text(
+                                "Dinle",
+                                style: theme.textTheme.bodyLarge,
                               ),
                             ),
                           ],
@@ -115,33 +104,45 @@ class StoriesTab extends GetView<HomeController> {
                 ),
               )),
           Positioned(
-            child: IconButton(
-              icon: Icon(
-                Icons.arrow_back_ios_new_rounded,
-                size: 40,
-                color: Colors.white,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.black.withOpacity(0.5),
+                shape: BoxShape.circle,
               ),
-              onPressed: () {
-                controller
-                    .updateCurrentIndex(controller.currentIndex.value - 1);
-              },
+              child: IconButton(
+                icon: Icon(
+                  Icons.arrow_back_ios_new_rounded,
+                  size: 30,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  controller
+                      .updateCurrentIndex(controller.currentIndex.value - 1);
+                },
+              ),
             ),
-            top: 150,
+            top: height * 0.1, // Butonun yüksekliği ekran yüksekliğinin %10'u
             left: 16,
           ),
           Positioned(
-            child: IconButton(
-              icon: Icon(
-                Icons.arrow_forward_ios_rounded,
-                size: 40,
-                color: Colors.white,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.black.withOpacity(0.5),
+                shape: BoxShape.circle,
               ),
-              onPressed: () {
-                controller
-                    .updateCurrentIndex(controller.currentIndex.value + 1);
-              },
+              child: IconButton(
+                icon: Icon(
+                  Icons.arrow_forward_ios_rounded,
+                  size: 30,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  controller
+                      .updateCurrentIndex(controller.currentIndex.value + 1);
+                },
+              ),
             ),
-            top: 150,
+            top: height * 0.1, // Butonun yüksekliği ekran yüksekliğinin %10'u
             right: 16,
           ),
         ],

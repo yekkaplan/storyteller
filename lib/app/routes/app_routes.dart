@@ -7,6 +7,7 @@ abstract class Routes {
   static const SPLASH = _Paths.SPLASH;
   static const TEST = _Paths.TEST;
   static const READ = _Paths.READ;
+  static const ALL_VIEW = _Paths.ALL_VIEW;
 }
 
 abstract class _Paths {
@@ -15,4 +16,5 @@ abstract class _Paths {
   static const SPLASH = '/splash';
   static const READ = '/read';
   static const TEST = '/test';
+  static const ALL_VIEW = '/allview';
 }

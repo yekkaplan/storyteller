@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:getx_skeleton/app/modules/home/views/widgets/all_stories_view.dart';
 import 'package:getx_skeleton/app/modules/read/bindings/read_binding.dart';
 import 'package:getx_skeleton/app/modules/read/views/read_view.dart';
 
@@ -23,6 +24,12 @@ class AppPages {
         page: () => const SplashView(),
         binding: SplashBinding()),
     GetPage(
-        name: _Paths.READ, page: () => const ReadView(), binding: ReadBinding())
+        name: _Paths.READ,
+        page: () => const ReadView(),
+        binding: ReadBinding()),
+    GetPage(
+        name: _Paths.ALL_VIEW,
+        page: () => const AllBooksView(),
+        binding: HomeBinding())
   ];
 }
