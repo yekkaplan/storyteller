@@ -3,8 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:getx_skeleton/app/modules/home/views/widgets/books-tab.dart';
-import 'package:getx_skeleton/app/modules/home/views/widgets/stories-tab.dart';
+import 'package:getx_skeleton/app/components/dashboard_button.dart';
+import 'package:getx_skeleton/app/modules/home/views/widgets/last_reads_tab.dart';
+import 'package:getx_skeleton/app/modules/home/views/widgets/stories_tab.dart';
 
 import '../controllers/home_controller.dart';
 
@@ -13,10 +14,7 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
-    var size = MediaQuery.of(context).size;
-    var isLargeScreen = size.width > 600;
-
+    var isLargeScreen = Get.width > 600;
     return GetBuilder<HomeController>(
       builder: (controller) {
         return Scaffold(
@@ -52,26 +50,10 @@ class HomeView extends GetView<HomeController> {
                           ),
                           child: Hero(
                             tag: 'HeroSplash',
-                            child: Image.asset(
-                              'assets/images/logo_144x144.png',
-                              fit: BoxFit.contain,
-                              height: isLargeScreen ? 160 : 120,
-                              width: isLargeScreen ? 160 : 120,
-                            ),
+                            child: Image.asset('assets/images/logo_144x144.png',
+                                fit: BoxFit.contain, height: 100, width: 100),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 16,
-                      ),
-                      Text(
-                        "Discover. Learn. Develop.",
-                        style: theme.textTheme.headline4?.copyWith(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: isLargeScreen ? 32 : 24,
-                        ),
-                        textAlign: TextAlign.center,
                       ),
                       SizedBox(
                         height: 16,
@@ -90,9 +72,9 @@ class HomeView extends GetView<HomeController> {
                             child: Column(
                               children: [
                                 TabBar(
-                                  labelColor: theme.primaryColor,
+                                  labelColor: Get.theme.primaryColor,
                                   unselectedLabelColor: Colors.grey,
-                                  indicatorColor: theme.primaryColor,
+                                  indicatorColor: Get.theme.primaryColor,
                                   tabs: [
                                     Tab(
                                       text: "Hikayeler",
@@ -105,78 +87,8 @@ class HomeView extends GetView<HomeController> {
                                 Expanded(
                                   child: TabBarView(
                                     children: [
-                                      Column(
-                                        children: [
-                                          Expanded(
-                                            child: BooksTab(
-                                                controller: controller),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: OutlinedButton(
-                                              onPressed: () {
-                                                Get.toNamed('allview');
-                                              },
-                                              style: OutlinedButton.styleFrom(
-                                                side: BorderSide(
-                                                    color: theme
-                                                        .colorScheme.secondary),
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(18),
-                                                ),
-                                                padding: EdgeInsets.symmetric(
-                                                    vertical: 12,
-                                                    horizontal: 24),
-                                              ),
-                                              child: Text(
-                                                "Tüm Hikayeleri Göster",
-                                                style: theme.textTheme.button
-                                                    ?.copyWith(
-                                                  color: theme
-                                                      .colorScheme.secondary,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Column(
-                                        children: [
-                                          Expanded(
-                                            child: StoriesTab(
-                                                controller: controller),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: OutlinedButton(
-                                              onPressed: () {
-                                                Get.toNamed('allview');
-                                              },
-                                              style: OutlinedButton.styleFrom(
-                                                side: BorderSide(
-                                                    color: theme
-                                                        .colorScheme.secondary),
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(18),
-                                                ),
-                                                padding: EdgeInsets.symmetric(
-                                                    vertical: 12,
-                                                    horizontal: 24),
-                                              ),
-                                              child: Text(
-                                                "Tüm Okunanları Göster",
-                                                style: theme.textTheme.button
-                                                    ?.copyWith(
-                                                  color: theme
-                                                      .colorScheme.secondary,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
+                                      StoriesColumn(controller: controller),
+                                      LastReadsColumn(controller: controller),
                                     ],
                                   ),
                                 ),
@@ -193,6 +105,47 @@ class HomeView extends GetView<HomeController> {
           ),
         );
       },
+    );
+  }
+}
+
+class LastReadsColumn extends StatelessWidget {
+  const LastReadsColumn({super.key, required this.controller});
+
+  final HomeController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Expanded(
+          child: LastReadsTab(controller: controller),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: DashboardButton(onPressed: () => {Get.toNamed('allview')}),
+        ),
+      ],
+    );
+  }
+}
+
+class StoriesColumn extends StatelessWidget {
+  const StoriesColumn({super.key, required this.controller});
+
+  final HomeController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Expanded(
+          child: StoriesTab(controller: controller),
+        ),
+        Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: DashboardButton(onPressed: () => {Get.toNamed('allview')})),
+      ],
     );
   }
 }

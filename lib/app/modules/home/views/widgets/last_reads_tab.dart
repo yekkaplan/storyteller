@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx_skeleton/app/data/models/book_mock_model.dart';
 import 'package:getx_skeleton/app/modules/home/controllers/home_controller.dart';
 import 'package:getx_skeleton/app/routes/app_pages.dart';
 
-class BooksTab extends GetView<HomeController> {
+class LastReadsTab extends GetView<HomeController> {
   final HomeController controller;
-  const BooksTab({super.key, required this.controller});
+  const LastReadsTab({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-    var size = MediaQuery.of(context).size;
-    var height = size.height;
 
     return Container(
       child: Stack(
         children: [
           Obx(() => Container(
+                padding: EdgeInsets.only(left: 4, right: 4),
                 child: Card(
                   elevation: 8,
                   child: Column(
@@ -30,8 +28,8 @@ class BooksTab extends GetView<HomeController> {
                         child: Hero(
                           tag: 'Test!',
                           child: Container(
-                            width: size.width,
-                            height: height *
+                            width: Get.width,
+                            height: Get.height *
                                 0.2, // Resim yüksekliği ekran yüksekliğinin %20'si
                             child: Image.asset(
                               controller
@@ -47,7 +45,7 @@ class BooksTab extends GetView<HomeController> {
                         child: Text(
                           controller.mockBookList[controller.currentIndex.value]
                               .bookName,
-                          style: theme.textTheme.headlineLarge!
+                          style: Get.theme.textTheme.headlineLarge!
                               .copyWith(color: Colors.black),
                         ),
                       ),
@@ -121,7 +119,8 @@ class BooksTab extends GetView<HomeController> {
                 },
               ),
             ),
-            top: height * 0.1, // Butonun yüksekliği ekran yüksekliğinin %10'u
+            top: Get.height *
+                0.1, // Butonun yüksekliği ekran yüksekliğinin %10'u
             left: 16,
           ),
           Positioned(
@@ -142,7 +141,8 @@ class BooksTab extends GetView<HomeController> {
                 },
               ),
             ),
-            top: height * 0.1, // Butonun yüksekliği ekran yüksekliğinin %10'u
+            top: Get.height *
+                0.1, // Butonun yüksekliği ekran yüksekliğinin %10'u
             right: 16,
           ),
         ],
